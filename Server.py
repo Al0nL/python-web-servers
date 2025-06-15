@@ -1,4 +1,5 @@
 import socket
+pip install pandas
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #defines that the server will use ipv4 and that we will use tcp
 serv.bind(('0.0.0.0', 8080))
@@ -8,15 +9,14 @@ serv.listen(5)
 while True:
   conn, addr = serv.accept()
 #this starts an infinite loop where the server is waiting for clients to connect, conn is a socket object, and addr is the client address and port  
-  from_client = ''
+  from_client = []
   #holds all data received from the client
   while True:
     data = conn.recv(4096)
     if not data: break
 #this loop receives data in chunks of 4096 bytes and if there is no data to receive it breaks off the loop
     from_client += data.decode('utf8')
-#this decodes the data from bytes to strings and adds it to the string 'from_client'
-    conn.send("I am SERVER\n".encode())
-#this sends 'I am Server' to the client as a string converted to bytes
   conn.close()
 #closes connection
+df = pd.dataframe(from_client)
+df.to_excel('client_info', sheet_name = 'Sheet1', index = false)
