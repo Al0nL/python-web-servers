@@ -1,5 +1,5 @@
 import socket
-pip install pandas
+pip install pandas as pd
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #defines that the server will use ipv4 and that we will use tcp
 serv.bind(('0.0.0.0', 8080))
@@ -19,4 +19,4 @@ while True:
   conn.close()
 #closes connection
 df = pd.dataframe(from_client)
-df.to_excel('client_info', sheet_name = 'Sheet1', index = false)
+df.append_to_excel_pandas('client_info', sheet_name = 'Sheet1', index = false)
