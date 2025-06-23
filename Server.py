@@ -1,5 +1,5 @@
 import socket
-pip install pandas as pd
+import pandas as pd
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #defines that the server will use ipv4 and that we will use tcp
 serv.bind(('0.0.0.0', 8080))
